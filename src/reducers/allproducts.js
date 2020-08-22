@@ -40,6 +40,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
         case "ADD_PRODUCT":
             console.log('add name, category and other details for new product....')
             console.log(state);
+            console.log(action)
             console.log(action.payload);
             let length = state.length
             let newProduct = [{
@@ -53,21 +54,30 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             return newProduct
 
         case "DELETE_PRODUCT":
+            console.log(action)
             console.log(action.payload);
             console.log(state)
-            let newAllProd = state.filter(p => p.id != action.payload);
-            allproducts = newAllProd;
+            let delproducts = state.filter(p => p.id != action.payload);
+            allproducts = delproducts;
             console.log(allproducts);
             return allproducts;
 
         case "EDIT_PRODUCT":
-            console.log(action.payload)
-            let product={
-                name:action.payload.name
-            }
-            console.log(product)
+            console.log(action.payload);
+            console.log(state)
+            let editproducts = state.map(p => {
+                if (p.id == action.payload.id) {
+                    console.log(p.id)
+                    p = action.payload
+                }
 
-            return allproducts;
+                return p;
+            });
+
+            //console.log("edit prod "+editProd)
+            allproducts = editproducts;
+            console.log(allproducts);
+            return editproducts;
         default:
             break;
     }

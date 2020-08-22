@@ -11,7 +11,8 @@ class AddProduct extends React.Component {
             category:'',
             price:0,
             quantity:0,
-            instock:''
+            instock:'',
+            editing:false
         }
     }
 
@@ -49,6 +50,7 @@ class AddProduct extends React.Component {
         }
         console.log(product)
         this.props.addNewProduct(product);
+        this.props.history.push("/")
     }
 
     render() {
@@ -56,7 +58,7 @@ class AddProduct extends React.Component {
             
             <div>
                
-                <form style={{ border:"1px solid black"}}>
+                <form style={{ border:"1px solid black",width:"400px",display:"flex",flexDirection:"column"}}>
 
                     <p>ProductName</p>
                     <input type="text" id="pname" placeholder="enter productName" onChange={this.getPname}></input><span style={{ color: "red" }}>{this.state.nameError}</span>
