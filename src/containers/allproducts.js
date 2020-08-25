@@ -9,24 +9,18 @@ import AddProduct from '../containers/addproduct';
 
 import Notification from '../containers/notification'
 import './allproducts.css'
+import searchProductBroadcast from '../actions/searchProductBroadcast';
 
 class AllProducts extends React.Component {
-    
-    state = {
-        searchProducts:[],
-        tempProducts:[]
-        
-    }
-    
-    
+
+
     displayPropsReceivedFromStore = () => {
         console.log("Received props from store -> products");
         console.log("products:", this.props.products)
-        //this.setState({searchProducts:this.props.products})
-       // this.setState({tempProducts:this.state.searchProducts})
         return this.props.products.map(p => {
             return (
                 <tr key={p.id}>
+                    <td><img style={{ width: "40", height: "40px", borderRadius: "25px" }} src={p.productImage} /></td>
                     <td>{p.productCode}</td>
                     <td> {p.productName} </td>
                     <td>{p.vendor}</td>
@@ -34,6 +28,7 @@ class AllProducts extends React.Component {
                     <td>{p.Manufacturer}</td>
                     <td>{p.price}</td>
                     <td>{p.quantity}</td>
+            <td>{p.color}</td>
                     {/* <td>{p.inStock}</td> */}
                     <td><button id={p.id} className="editpro" onClick={() => this.editProduct(p)}>edit</button></td>
                     <td><button id={p.id} className="deletepro" onClick={this.deleteProduct}>delete</button></td>
@@ -67,47 +62,6 @@ class AllProducts extends React.Component {
         console.log(newp)
     }
 
-    search = (event) => {
-        console.log("search products is being called..!")
-        console.log(event.target.value)
-        if(event.target.value == ''){
-            this.displayPropsReceivedFromStore()
-        }
-        else{
-            console.log(this.state.tempProducts)
-            let filteredList = this.props.products.filter((product) => {
-                return product.productName.toLowerCase().includes(event.target.value.toLowerCase());
-
-            })
-            console.log("filteredList", filteredList);
-            this.setState({products:filteredList})
-            
-        }
-    }
-    searchCategories = (event) => {
-        console.log("search categories is being called..!")
-        console.log(event.target.value)
-        console.log(this.state.newProducts)
-        if (event.target.value !== '') {
-            console.log(event.target.value)
-
-            let filteredList = this.props.products.filter((product) => {
-                return product.category.toLowerCase().includes(event.target.value.toLowerCase());
-
-            })
-            console.log("filteredCategoryList", filteredList);
-            this.setState({ newProducts: filteredList });
-            console.log(this.state.newProducts)
-            this.setState({ products: this.state.newProducts })
-            this.displayPropsReceivedFromStore()
-
-        }
-        else {
-            this.setState({ products: this.props.products })
-            this.displayPropsReceivedFromStore()
-        }
-
-    }
 
     render() {
         return (
@@ -116,19 +70,22 @@ class AllProducts extends React.Component {
                 <Notification></Notification>
 
                 <br></br>
-                <input type="search" name="search" id="search" onChange={this.search} placeholder="Search for a product"></input>
-                <input type="search" name="search" id="search" style={{ marginLeft: "20px" }} onChange={this.searchCategories} placeholder="Search by category"></input>
+
+                <input type="search" name="search" id="search" onChange={(e) => this.props.setSearch(e.target.value)} placeholder="Search for a product"></input>
                 <Link to="/addproduct"><button id="addpro">AddProduct</button></Link>
+                <div style={{overflowX:"auto"}}>
                 <table border="none" id="customers">
                     <thead>
                         <tr>
+                        <th>Image</th>
                             <th>productCode</th>
-                            <th>name</th>
+                            <th>ProductName</th>
                             <th>Vendor</th>
                             <th>category</th>
                             <th>Manufacturer</th>
                             <th>price</th>
                             <th>quantity</th>
+                            <th>color</th>
                             {/* <th>instock</th> */}
                             <th colSpan="2">actions</th>
                         </tr>
@@ -138,6 +95,7 @@ class AllProducts extends React.Component {
 
                     </tbody>
                 </table>
+                </div>
             </div>
         );
     }
@@ -149,11 +107,11 @@ function convertStoreToProps(store) {
     console.log(store.allproducts)
     //Identify the data from store which allproducts container can consume.
     //it will consume extracted data as props!!!!
-    
+
     return {
 
         products: store.allproducts
-        
+
 
     }
 }
@@ -161,7 +119,8 @@ function convertStoreToProps(store) {
 function recieveDeleteAndDispatch(dispatch) {
     return bindActionCreators({
         deleteNewProduct: deleteProductBroadcast,
-        editNewProduct: editProductBroadcast
+        editNewProduct: editProductBroadcast,
+        setSearch: searchProductBroadcast
     }, dispatch);
 }
 

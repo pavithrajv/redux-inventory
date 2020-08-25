@@ -2,9 +2,11 @@
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 75%;
-    margin-left: 8%;
-    margin-top: 4%;
+    margin-left: 5%;
+    margin-top: 3%;
     border: transparent;
+    width: 80%;
+    border-collapse: collapse;
   }
   #customers td
     {
@@ -59,11 +61,12 @@
       
       display: inline-flex;
       flex-flow: wrap;
-      width: 200px;
+      width: 300px;
       height: 30px;
       border-radius: 15px;
       border: 1px solid grey;
       text-align: center;
       font-size: 18px;
+      margin-top: 20px;
       
     }

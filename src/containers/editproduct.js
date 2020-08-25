@@ -14,11 +14,13 @@ class EditProduct extends React.Component {
             id:0,
             code: '',
             name: '',
+            image:'',
             category: '',
             vendor: '',
             price: 0,
             manufacturer: '',
             quantity: 0,
+            color:'',
             instock: ''
         }
     }
@@ -31,6 +33,10 @@ class EditProduct extends React.Component {
     getPname = (event) => {
         console.log(event.target.value)
         this.setState({ name: event.target.value })
+    }
+    getPimage = (event) => {
+        console.log(event.target.value)
+        this.setState({ image: event.target.value })
     }
     getVendor = (event) => {
         console.log(event.target.value)
@@ -57,7 +63,10 @@ class EditProduct extends React.Component {
         console.log(event.target.value)
         this.setState({ inStock: event.target.value })
     }
-
+    getColor = (event) => {
+        console.log(event.target.value)
+        this.setState({ color: event.target.value })
+    }
     componentDidMount = () => {
         console.log(this.props.location.state)
         if (this.props.location.state != undefined) {
@@ -65,11 +74,13 @@ class EditProduct extends React.Component {
                 id:this.props.location.state.detail.id,
                 code:this.props.location.state.detail.productCode,
                 name: this.props.location.state.detail.productName,
+                image:this.props.location.state.detail.productImage,
                 vendor:this.props.location.state.detail.vendor,
                 category: this.props.location.state.detail.category,
                 manufacturer:this.props.location.state.detail.Manufacturer,
                 price: this.props.location.state.detail.price,
-                quantity: this.props.location.state.detail.quantity
+                quantity: this.props.location.state.detail.quantity,
+                color:this.props.location.state.detail.color
                // inStock: this.props.location.state.detail.inStock
             })
         }
@@ -82,11 +93,13 @@ class EditProduct extends React.Component {
             "productCode" :this.state.code,
             // "productImage": this.state.pimage,
             "productName": this.state.name,
+            "productImage":this.state.image,
             "vendor":this.state.vendor,
             "category": this.state.category,
             "Manufacturer":this.state.manufacturer,
             "quantity": this.state.quantity,
-            "price": this.state.price
+            "price": this.state.price,
+            "color":this.state.color
         }
         console.log(product)
         this.props.editNewProduct(product)
@@ -113,6 +126,9 @@ class EditProduct extends React.Component {
                     <p>ProductName</p>
                     <input type="text" id="name" value={this.state.name} onChange={this.getPname}></input><span style={{ color: "red" }}>{this.state.nameError}</span>
                     <br></br>
+                    <p>ProductImage</p>
+                    <input type="text" id="code" value={this.state.image} onChange={this.getPimage}></input><span style={{ color: "red" }}>{this.state.imageError}</span>
+                    <br></br>
                     <p>Vendor</p>
                     <input type="text" id="vendor" value={this.state.vendor} placeholder="enter vendor details" onChange={this.getVendor}></input><span style={{ color: "red" }}>{this.state.vendorError}</span>
                     <br></br>
@@ -135,6 +151,9 @@ class EditProduct extends React.Component {
                     <br></br>
                     <p>Quantity</p>
                     <input type="number" id="quantity" value={this.state.quantity} onChange={this.getQuantity}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
+                    <br></br>
+                    <p>Color</p>
+                    <input type="text" id="color" value={this.state.color} onChange={this.getColor}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
                     <br></br>
                     {/* <p>In-stock</p>
                     <select id="stock" value={this.state.inStock} onChange={this.getStock}>

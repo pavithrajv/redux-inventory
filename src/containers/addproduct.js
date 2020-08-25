@@ -7,14 +7,17 @@ import Notification from '../containers/notification'
 class AddProduct extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props)
         this.state = {
             code: '',
             name: '',
+            image:'',
             category: 'Mobile',
             vendor: '',
             price: 0,
             manufacturer: '',
             quantity: 0,
+            color:'',
             instock: 'Yes',
             editing: false
         }
@@ -29,6 +32,10 @@ class AddProduct extends React.Component {
     getPname = (event) => {
         console.log(event.target.value)
         this.setState({ name: event.target.value })
+    }
+    getPimage = (event) => {
+        console.log(event.target.value)
+        this.setState({ image: event.target.value })
     }
     getVendor = (event) => {
         console.log(event.target.value)
@@ -54,6 +61,10 @@ class AddProduct extends React.Component {
         console.log(event.target.value)
         this.setState({ instock: event.target.value })
     }
+    getColor = (event) => {
+        console.log(event.target.value)
+        this.setState({ color: event.target.value })
+    }
     addProduct = (event) => {
         event.preventDefault()
         console.log("button clicked.....")
@@ -66,11 +77,13 @@ class AddProduct extends React.Component {
             "productCode": this.state.code,
             // "productImage": this.state.pimage,
             "productName": this.state.name,
+            "productImage": this.state.image,
             "vendor": this.state.vendor,
             "category": this.state.category,
             "Manufacturer": this.state.manufacturer,
             "quantity": this.state.quantity,
-            "price": this.state.price
+            "price": this.state.price,
+            "color":this.state.color
             // "inStock": this.state.pstock
         }
         console.log(product)
@@ -91,6 +104,9 @@ class AddProduct extends React.Component {
                     <br></br>
                     <p>ProductName</p>
                     <input type="text" id="name" placeholder="enter productName" onChange={this.getPname}></input><span style={{ color: "red" }}>{this.state.nameError}</span>
+                    <br></br>
+                    <p>ProductImage</p>
+                    <input type="text" id="code" placeholder="enter image address" onChange={this.getPimage}></input><span style={{ color: "red" }}>{this.state.imageError}</span>
                     <br></br>
                     <p>Vendor</p>
                     <input type="text" id="vendor" placeholder="enter vendor details" onChange={this.getVendor}></input><span style={{ color: "red" }}>{this.state.vendorError}</span>
@@ -114,6 +130,9 @@ class AddProduct extends React.Component {
                     <br></br>
                     <p>Quantity</p>
                     <input type="number" id="quantity" placeholder="enter quantity" onChange={this.getQuantity}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
+                    <br></br>
+                    <p>Color</p>
+                    <input type="text" id="color" placeholder="enter productColor" onChange={this.getColor}></input><span style={{ color: "red" }}>{this.state.codeError}</span>
                     <br></br>
                     {/* <p>In-stock</p>
                     <select id="stock" onChange={this.getStock}>
