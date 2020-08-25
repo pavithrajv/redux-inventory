@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import editProductBroadcast from '../actions/editProductBroadcast';
+import Notification from '../containers/notification'
+import './editproduct.css'
 class EditProduct extends React.Component {
 
     constructor(props) {
@@ -10,22 +12,37 @@ class EditProduct extends React.Component {
         console.log(this.props.location.state)
         this.state = {
             id:0,
+            code: '',
             name: '',
             category: '',
+            vendor: '',
             price: 0,
+            manufacturer: '',
             quantity: 0,
-            inStock: ''
+            instock: ''
         }
     }
+    getCode = (event) => {
+        console.log(event.target.value)
+        this.setState({ code: event.target.value })
+        //console.log(this.state.buttonStatus)
 
+    }
     getPname = (event) => {
         console.log(event.target.value)
         this.setState({ name: event.target.value })
     }
-
+    getVendor = (event) => {
+        console.log(event.target.value)
+        this.setState({ vendor: event.target.value })
+    }
     getPcat = (event) => {
         console.log(event.target.value)
         this.setState({ category: event.target.value })
+    }
+    getManufacturer = (event) => {
+        console.log("manufacturer" + event.target.value)
+        this.setState({ manufacturer: event.target.value })
     }
 
     getPrice = (event) => {
@@ -46,11 +63,14 @@ class EditProduct extends React.Component {
         if (this.props.location.state != undefined) {
             this.setState({
                 id:this.props.location.state.detail.id,
-                name: this.props.location.state.detail.name,
+                code:this.props.location.state.detail.productCode,
+                name: this.props.location.state.detail.productName,
+                vendor:this.props.location.state.detail.vendor,
                 category: this.props.location.state.detail.category,
+                manufacturer:this.props.location.state.detail.Manufacturer,
                 price: this.props.location.state.detail.price,
-                quantity: this.props.location.state.detail.quantity,
-                inStock: this.props.location.state.detail.inStock
+                quantity: this.props.location.state.detail.quantity
+               // inStock: this.props.location.state.detail.inStock
             })
         }
     }
@@ -58,12 +78,15 @@ class EditProduct extends React.Component {
         console.log("update product clicked...")
         console.log(event.target.value)
         let product = {
-            id:this.state.id,
-            name: this.state.name,
-            category: this.state.category,
-            price: this.state.price,
-            quantity: this.state.quantity,
-            inStock: this.state.inStock
+            "id":this.state.id,
+            "productCode" :this.state.code,
+            // "productImage": this.state.pimage,
+            "productName": this.state.name,
+            "vendor":this.state.vendor,
+            "category": this.state.category,
+            "Manufacturer":this.state.manufacturer,
+            "quantity": this.state.quantity,
+            "price": this.state.price
         }
         console.log(product)
         this.props.editNewProduct(product)
@@ -78,15 +101,21 @@ class EditProduct extends React.Component {
             )
         }
         return (
-
             <div>
-                <h2>{this.state.name}</h2>
-                <form style={{ border: "1px solid black" }}>
+                <Notification></Notification>
 
-                    <p>ProductName</p>
-                    <input type="text" id="pname" value={this.state.name} onChange={this.getPname}></input><span style={{ color: "red" }}>{this.state.nameError}</span>
+            <div id="editbox">
+                <h2>Details of {this.state.name}</h2>
+                <form style={{  display: "flex", flexDirection: "column" }}>
+                <p>ProductCode</p>
+                    <input type="text" id="code" value={this.state.code} placeholder="enter productCode" onChange={this.getCode}></input><span style={{ color: "red" }}>{this.state.codeError}</span>
                     <br></br>
-
+                    <p>ProductName</p>
+                    <input type="text" id="name" value={this.state.name} onChange={this.getPname}></input><span style={{ color: "red" }}>{this.state.nameError}</span>
+                    <br></br>
+                    <p>Vendor</p>
+                    <input type="text" id="vendor" value={this.state.vendor} placeholder="enter vendor details" onChange={this.getVendor}></input><span style={{ color: "red" }}>{this.state.vendorError}</span>
+                    <br></br>
                     <p>Category</p>
                     <select id="pcat" value={this.state.category} onChange={this.getPcat}>
                         <option disabled>Electronics</option>
@@ -98,22 +127,25 @@ class EditProduct extends React.Component {
                         <option>Accesories</option>
                     </select><span style={{ color: "red" }}>{this.state.catError}</span>
                     <br></br>
-
+                    <p>Manufacturer</p>
+                    <input type="text" id="manufacturer" value={this.state.manufacturer} placeholder="enter manufacturer" onChange={this.getManufacturer}></input><span style={{ color: "red" }}>{this.state.manfError}</span>
+                    <br></br>
                     <p>Price</p>
                     <input type="number" id="price" value={this.state.price} onChange={this.getPrice}></input><span style={{ color: "red" }}>{this.state.priceError}</span>
                     <br></br>
                     <p>Quantity</p>
                     <input type="number" id="quantity" value={this.state.quantity} onChange={this.getQuantity}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
                     <br></br>
-                    <p>In-stock</p>
+                    {/* <p>In-stock</p>
                     <select id="stock" value={this.state.inStock} onChange={this.getStock}>
                         <option>Yes</option>
                         <option>No</option>
-                    </select><span style={{ color: "red" }}>{this.state.catError}</span>
-                    <br></br><br></br>
+                    </select><span style={{ color: "red" }}>{this.state.catError}</span> */}
+                    
 
-                    <button id="add" onClick={this.updateProduct} >Update Product</button>
+                    <button id="edit" onClick={this.updateProduct} >Update Product</button>
                 </form>
+            </div>
             </div>
         );
     }

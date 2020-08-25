@@ -6,30 +6,37 @@ import editProductBroadcast from '../actions/editProductBroadcast';
 import { Redirect, Link } from "react-router-dom";
 import EditProduct from '../containers/editproduct';
 import AddProduct from '../containers/addproduct';
-import notification from './notification';
+
 import Notification from '../containers/notification'
+import './allproducts.css'
+
 class AllProducts extends React.Component {
-
-    // state={
-    //     editid:0,
-    //     editClicked:false,
-    // }
-
-
-
+    
+    state = {
+        searchProducts:[],
+        tempProducts:[]
+        
+    }
+    
+    
     displayPropsReceivedFromStore = () => {
         console.log("Received props from store -> products");
         console.log("products:", this.props.products)
+        //this.setState({searchProducts:this.props.products})
+       // this.setState({tempProducts:this.state.searchProducts})
         return this.props.products.map(p => {
             return (
                 <tr key={p.id}>
-                    <td> {p.name} </td>
+                    <td>{p.productCode}</td>
+                    <td> {p.productName} </td>
+                    <td>{p.vendor}</td>
                     <td>{p.category}</td>
+                    <td>{p.Manufacturer}</td>
                     <td>{p.price}</td>
                     <td>{p.quantity}</td>
-                    <td>{p.inStock}</td>
-                    <td><button id={p.id} onClick={()=>this.editProduct(p)}>edit</button></td>
-                    <td><button id={p.id} onClick={this.deleteProduct}>delete</button></td>
+                    {/* <td>{p.inStock}</td> */}
+                    <td><button id={p.id} className="editpro" onClick={() => this.editProduct(p)}>edit</button></td>
+                    <td><button id={p.id} className="deletepro" onClick={this.deleteProduct}>delete</button></td>
 
                 </tr>
             )
@@ -50,68 +57,79 @@ class AllProducts extends React.Component {
 
     editProduct = (p) => {
         console.log("update product clicked...")
-        console.log("p.id",p)
+        console.log("p.id", p)
         this.props.history.push({
             pathname: '/editproduct',
-            
+
             state: { detail: p }
-          })
-        // this.props.history.push("/editproduct")
-        
-        // event.preventDefault();
-        // console.log(event.target.id)
-        // this.setState({ editid: event.target.id })
-        //this.props.history.push('/editproduct',state:)
-        //this.props.editNewProduct(event.target.id)
+        })
         let newp = this.props.products;
         console.log(newp)
-        //console.log(newp.filter(p => p.id === this.state.editid));
-        
-        // console.log(this.props)
-       // this.props.editNewProduct(p)
     }
 
-    searchProducts = (event) => {
+    search = (event) => {
         console.log("search products is being called..!")
         console.log(event.target.value)
-        console.log(this.props.products)
-        if (event.target.value !== '') {
-            console.log(event.target.value)
-
+        if(event.target.value == ''){
+            this.displayPropsReceivedFromStore()
+        }
+        else{
+            console.log(this.state.tempProducts)
             let filteredList = this.props.products.filter((product) => {
-                return product.name.toLowerCase().includes(event.target.value.toLowerCase());
+                return product.productName.toLowerCase().includes(event.target.value.toLowerCase());
 
             })
             console.log("filteredList", filteredList);
-            filteredList = this.props.products;
-            console.log(filteredList)
-            this.displayPropsReceivedFromStore(filteredList)
-            console.log("********")
+            this.setState({products:filteredList})
+            
+        }
+    }
+    searchCategories = (event) => {
+        console.log("search categories is being called..!")
+        console.log(event.target.value)
+        console.log(this.state.newProducts)
+        if (event.target.value !== '') {
+            console.log(event.target.value)
+
+            let filteredList = this.state.newProducts.filter((product) => {
+                return product.category.toLowerCase().includes(event.target.value.toLowerCase());
+
+            })
+            console.log("filteredCategoryList", filteredList);
+            this.setState({ newProducts: filteredList });
+            console.log(this.state.newProducts)
+            this.setState({ products: this.state.newProducts })
+            this.displayPropsReceivedFromStore()
 
         }
         else {
-            console.log("-----------")
+            this.setState({ products: this.props.products })
             this.displayPropsReceivedFromStore()
         }
 
     }
+
     render() {
         return (
-            
+
             <div>
                 <Notification></Notification>
-                List of all products
+
                 <br></br>
-                <input type="search" name="search" id="search" onChange={this.searchProducts} placeholder="Search for a product"></input>
-                <Link to="/addproduct"><button>AddProduct</button></Link>
-                <table border="1" style={{ width: "50%" }}>
+                <input type="search" name="search" id="search" onChange={this.search} placeholder="Search for a product"></input>
+                <input type="search" name="search" id="search" style={{ marginLeft: "20px" }} onChange={this.searchCategories} placeholder="Search by category"></input>
+                <Link to="/addproduct"><button id="addpro">AddProduct</button></Link>
+                <table border="none" id="customers">
                     <thead>
                         <tr>
+                            <th>productCode</th>
                             <th>name</th>
+                            <th>Vendor</th>
                             <th>category</th>
+                            <th>Manufacturer</th>
                             <th>price</th>
                             <th>quantity</th>
-                            <th>instock</th>
+                            {/* <th>instock</th> */}
                             <th colSpan="2">actions</th>
                         </tr>
                     </thead>
@@ -131,9 +149,11 @@ function convertStoreToProps(store) {
     console.log(store.allproducts)
     //Identify the data from store which allproducts container can consume.
     //it will consume extracted data as props!!!!
+    
     return {
 
         products: store.allproducts
+        
 
     }
 }

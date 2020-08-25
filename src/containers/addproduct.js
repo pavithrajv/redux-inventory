@@ -2,51 +2,76 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import broadcastAddProduct from '../actions/addProductBroadcast';
-
+import './addproduct.css'
+import Notification from '../containers/notification'
 class AddProduct extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            name:'',
-            category:'',
-            price:0,
-            quantity:0,
-            instock:'',
-            editing:false
+        this.state = {
+            code: '',
+            name: '',
+            category: 'Mobile',
+            vendor: '',
+            price: 0,
+            manufacturer: '',
+            quantity: 0,
+            instock: 'Yes',
+            editing: false
         }
     }
 
-    getPname=(event)=>{
+    getCode = (event) => {
         console.log(event.target.value)
-        this.setState({name:event.target.value})
-    }
+        this.setState({ code: event.target.value })
+        //console.log(this.state.buttonStatus)
 
-    getPcat=(event)=>{
-        console.log(event.target.value)
-        this.setState({category:event.target.value})
     }
-
-    getPrice=(event)=>{
+    getPname = (event) => {
         console.log(event.target.value)
-        this.setState({price:event.target.value})
+        this.setState({ name: event.target.value })
     }
-    getQuantity=(event)=>{
+    getVendor = (event) => {
         console.log(event.target.value)
-        this.setState({quantity:event.target.value})
+        this.setState({ vendor: event.target.value })
     }
-    getStock=(event)=>{
+    getPcat = (event) => {
         console.log(event.target.value)
-        this.setState({instock:event.target.value})
+        this.setState({ category: event.target.value })
     }
-    addProduct=(event)=>{
+    getManufacturer = (event) => {
+        console.log("manufacturer" + event.target.value)
+        this.setState({ manufacturer: event.target.value })
+    }
+    getPrice = (event) => {
+        console.log(event.target.value)
+        this.setState({ price: event.target.value })
+    }
+    getQuantity = (event) => {
+        console.log(event.target.value)
+        this.setState({ quantity: event.target.value })
+    }
+    getStock = (event) => {
+        console.log(event.target.value)
+        this.setState({ instock: event.target.value })
+    }
+    addProduct = (event) => {
         event.preventDefault()
         console.log("button clicked.....")
-        let product={
-            name:this.state.name,
-            category:this.state.category,
-            price:this.state.price,
-            quantity:this.state.quantity,
-            inStock:this.state.instock
+        let product = {
+            // name:this.state.name,
+            // category:this.state.category,
+            // price:this.state.price,
+            // quantity:this.state.quantity,
+            // inStock:this.state.instock,
+            "productCode": this.state.code,
+            // "productImage": this.state.pimage,
+            "productName": this.state.name,
+            "vendor": this.state.vendor,
+            "category": this.state.category,
+            "Manufacturer": this.state.manufacturer,
+            "quantity": this.state.quantity,
+            "price": this.state.price
+            // "inStock": this.state.pstock
         }
         console.log(product)
         this.props.addNewProduct(product);
@@ -55,15 +80,21 @@ class AddProduct extends React.Component {
 
     render() {
         return (
-            
             <div>
-               
-                <form style={{ border:"1px solid black",width:"400px",display:"flex",flexDirection:"column"}}>
+                <Notification></Notification>
+            
+            <div id="addbox">
 
-                    <p>ProductName</p>
-                    <input type="text" id="pname" placeholder="enter productName" onChange={this.getPname}></input><span style={{ color: "red" }}>{this.state.nameError}</span>
+                <form style={{  display: "flex", flexDirection: "column" }}>
+                    <p>ProductCode</p>
+                    <input type="text" id="code" placeholder="enter productCode" onChange={this.getCode}></input><span style={{ color: "red" }}>{this.state.codeError}</span>
                     <br></br>
-
+                    <p>ProductName</p>
+                    <input type="text" id="name" placeholder="enter productName" onChange={this.getPname}></input><span style={{ color: "red" }}>{this.state.nameError}</span>
+                    <br></br>
+                    <p>Vendor</p>
+                    <input type="text" id="vendor" placeholder="enter vendor details" onChange={this.getVendor}></input><span style={{ color: "red" }}>{this.state.vendorError}</span>
+                    <br></br>
                     <p>Category</p>
                     <select id="pcat" onChange={this.getPcat}>
                         <option disabled>Electronics</option>
@@ -75,34 +106,37 @@ class AddProduct extends React.Component {
                         <option>Accesories</option>
                     </select><span style={{ color: "red" }}>{this.state.catError}</span>
                     <br></br>
-
+                    <p>Manufacturer</p>
+                    <input type="text" id="manufacturer" placeholder="enter manufacturer" onChange={this.getManufacturer}></input><span style={{ color: "red" }}>{this.state.manfError}</span>
+                    <br></br>
                     <p>Price</p>
                     <input type="number" id="price" placeholder="enter Price" onChange={this.getPrice}></input><span style={{ color: "red" }}>{this.state.priceError}</span>
                     <br></br>
                     <p>Quantity</p>
                     <input type="number" id="quantity" placeholder="enter quantity" onChange={this.getQuantity}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
                     <br></br>
-                    <p>In-stock</p>
+                    {/* <p>In-stock</p>
                     <select id="stock" onChange={this.getStock}>
                         <option>Yes</option>
                         <option>No</option>
-                    </select><span style={{ color: "red" }}>{this.state.catError}</span>
-                    <br></br><br></br>
+                    </select><span style={{ color: "red" }}>{this.state.catError}</span> */}
+                    {/* <br></br><br></br> */}
 
                     <button id="add" onClick={this.addProduct} >Save Product</button>
                 </form>
+            </div>
             </div>
         );
 
     }
 
-    
+
 }
-function convertPropToEventAndBroadcast(dispatch){
+function convertPropToEventAndBroadcast(dispatch) {
     //console.log("Received the nameclicked event as props in FriendList.... ")
     return bindActionCreators({
-        addNewProduct:broadcastAddProduct
+        addNewProduct: broadcastAddProduct
     }, dispatch)
 
 }
-export default connect(null,convertPropToEventAndBroadcast)(AddProduct);
+export default connect(null, convertPropToEventAndBroadcast)(AddProduct);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import './notification.css'
 class Notification extends React.Component {
     constructor(props) {
         super(props);
@@ -11,11 +12,18 @@ class Notification extends React.Component {
     render() { 
         
         return ( 
-            <div>
-                <nav style={{backgroundColor:"lightgrey",width:"100%",display:"flex"}}>
-                <center><h2 >Avl products:{this.props.products.length}</h2></center>
-                </nav>
-            </div>
+            // <div>
+            //     <nav style={{backgroundColor:"lightgrey",width:"100%",display:"flex"}}>
+            //     <center><h2 >Avl products:{this.props.products.length}</h2></center>
+            //     </nav>
+            // </div>
+            <nav>
+        <ul>
+            <li style={{color: "whitesmoke"}}><h2>Product Inventory</h2></li>
+            <li style={{color: "whitesmoke"}}><center><h2 >Products:{this.props.products.length}</h2></center></li>
+            {/* <li><h2>Logout</h2></li> */}
+        </ul>
+    </nav>
          );
     }
 }

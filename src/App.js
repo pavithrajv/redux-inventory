@@ -11,7 +11,7 @@ import Routes from './containers/routes';
 function App() {
   return (
     <div>
-    <h3>Redux Inventory</h3>
+    
     {/* <Notification></Notification>
     <AddProduct></AddProduct>
     <AllProducts></AllProducts> */}
