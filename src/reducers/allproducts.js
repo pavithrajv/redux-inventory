@@ -10,7 +10,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "REALME",
             "quantity": "25",
             "price": "10999",
-            "id": 2
+            "id": 1
           },
           {
             "productCode": "CAN365",
@@ -20,7 +20,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "CANON",
             "quantity": "20",
             "price": "500",
-            "id": 3
+            "id": 2
           },
           {
             "productCode": "DELP65",
@@ -30,7 +30,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "DELL",
             "quantity": "20",
             "price": "30000",
-            "id": 4
+            "id": 3
           },
           {
             "productCode": "BOAT321",
@@ -40,7 +40,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "BOAT",
             "quantity": "43",
             "price": "500",
-            "id": 5
+            "id": 4
           },
           {
             "productCode": "JBL534",
@@ -50,7 +50,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "JBL",
             "quantity": "28",
             "price": "2159",
-            "id": 6
+            "id": 5
           },
           {
             "productCode": "APP841",
@@ -60,7 +60,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "APPLE",
             "quantity": "24",
             "price": "1549",
-            "id": 7
+            "id": 6
           },
           {
             "productCode": "SAM456",
@@ -70,7 +70,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "SAMSUNG",
             "quantity": "20",
             "price": "14521",
-            "id": 8
+            "id": 7
           },
           {
             "productCode": "MIWL45",
@@ -80,7 +80,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "MI",
             "quantity": "30",
             "price": "639",
-            "id": 9
+            "id": 8
           },
           {
             "productCode": "LEN025",
@@ -90,7 +90,7 @@ const allProductsReducer = function listAllProducts(state = null, action) {
             "Manufacturer": "HP",
             "quantity": "20",
             "price": "23199",
-            "id": 10
+            "id": 9
           }
     ]
 

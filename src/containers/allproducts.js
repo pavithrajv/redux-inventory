@@ -91,7 +91,7 @@ class AllProducts extends React.Component {
         if (event.target.value !== '') {
             console.log(event.target.value)
 
-            let filteredList = this.state.newProducts.filter((product) => {
+            let filteredList = this.props.products.filter((product) => {
                 return product.category.toLowerCase().includes(event.target.value.toLowerCase());
 
             })
