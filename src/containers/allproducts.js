@@ -10,6 +10,7 @@ import AddProduct from '../containers/addproduct';
 import Notification from '../containers/notification'
 import './allproducts.css'
 import searchProductBroadcast from '../actions/searchProductBroadcast';
+import searchCategoryBroadcast from '../actions/searchCategoryBroadcast';
 
 class AllProducts extends React.Component {
 
@@ -28,7 +29,7 @@ class AllProducts extends React.Component {
                     <td>{p.Manufacturer}</td>
                     <td>{p.price}</td>
                     <td>{p.quantity}</td>
-            <td>{p.color}</td>
+                    <td>{p.color}</td>
                     {/* <td>{p.inStock}</td> */}
                     <td><button id={p.id} className="editpro" onClick={() => this.editProduct(p)}>edit</button></td>
                     <td><button id={p.id} className="deletepro" onClick={this.deleteProduct}>delete</button></td>
@@ -72,29 +73,30 @@ class AllProducts extends React.Component {
                 <br></br>
 
                 <input type="search" name="search" id="search" onChange={(e) => this.props.setSearch(e.target.value)} placeholder="Search for a product"></input>
+                <input type="search" name="search" id="search" onChange={(e) => this.props.setSearchCategory(e.target.value)} placeholder="Search by category"></input>
                 <Link to="/addproduct"><button id="addpro">AddProduct</button></Link>
-                <div style={{overflowX:"auto"}}>
-                <table border="none" id="customers">
-                    <thead>
-                        <tr>
-                        <th>Image</th>
-                            <th>productCode</th>
-                            <th>ProductName</th>
-                            <th>Vendor</th>
-                            <th>category</th>
-                            <th>Manufacturer</th>
-                            <th>price</th>
-                            <th>quantity</th>
-                            <th>color</th>
-                            {/* <th>instock</th> */}
-                            <th colSpan="2">actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.displayPropsReceivedFromStore()}
+                <div style={{ overflowX: "auto" }}>
+                    <table border="none" id="customers">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>productCode</th>
+                                <th>ProductName</th>
+                                <th>Vendor</th>
+                                <th>category</th>
+                                <th>Manufacturer</th>
+                                <th>price</th>
+                                <th>quantity</th>
+                                <th>color</th>
+                                {/* <th>instock</th> */}
+                                <th colSpan="2">actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.displayPropsReceivedFromStore()}
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         );
@@ -120,7 +122,8 @@ function recieveDeleteAndDispatch(dispatch) {
     return bindActionCreators({
         deleteNewProduct: deleteProductBroadcast,
         editNewProduct: editProductBroadcast,
-        setSearch: searchProductBroadcast
+        setSearch: searchProductBroadcast,
+        setSearchCategory:searchCategoryBroadcast
     }, dispatch);
 }
 

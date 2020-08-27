@@ -1,9 +1,11 @@
 import allProductsReducer from './allproducts';
+import allUsersReducer from './allusers'
 const { combineReducers } = require("redux");
 
 
 const allReducers=combineReducers({
-    allproducts:allProductsReducer
+    allproducts:allProductsReducer,
+    allusers:allUsersReducer
 
 })
 

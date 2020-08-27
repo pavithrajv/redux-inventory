@@ -103,7 +103,7 @@ class EditProduct extends React.Component {
         }
         console.log(product)
         this.props.editNewProduct(product)
-        this.props.history.push("/")
+        this.props.history.push("/products")
     }
     render() {
         if (this.props.location.state == undefined) {
@@ -147,10 +147,10 @@ class EditProduct extends React.Component {
                     <input type="text" id="manufacturer" value={this.state.manufacturer} placeholder="enter manufacturer" onChange={this.getManufacturer}></input><span style={{ color: "red" }}>{this.state.manfError}</span>
                     <br></br>
                     <p>Price</p>
-                    <input type="number" id="price" value={this.state.price} onChange={this.getPrice}></input><span style={{ color: "red" }}>{this.state.priceError}</span>
+                    <input type="number" id="price" style={{color:"black"}} value={this.state.price} onChange={this.getPrice}></input><span style={{ color: "red" }}>{this.state.priceError}</span>
                     <br></br>
                     <p>Quantity</p>
-                    <input type="number" id="quantity" value={this.state.quantity} onChange={this.getQuantity}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
+                    <input type="number" id="quantity" style={{color:"black"}} value={this.state.quantity} onChange={this.getQuantity}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
                     <br></br>
                     <p>Color</p>
                     <input type="text" id="color" value={this.state.color} onChange={this.getColor}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>

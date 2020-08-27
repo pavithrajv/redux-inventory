@@ -88,7 +88,7 @@ class AddProduct extends React.Component {
         }
         console.log(product)
         this.props.addNewProduct(product);
-        this.props.history.push("/")
+        this.props.history.push("/products")
     }
 
     render() {
@@ -98,7 +98,7 @@ class AddProduct extends React.Component {
             
             <div id="addbox">
 
-                <form style={{  display: "flex", flexDirection: "column" }}>
+                <form style={{  display: "flex", flexDirection: "column",marginTop:"30px" }}>
                     <p>ProductCode</p>
                     <input type="text" id="code" placeholder="enter productCode" onChange={this.getCode}></input><span style={{ color: "red" }}>{this.state.codeError}</span>
                     <br></br>
@@ -126,10 +126,10 @@ class AddProduct extends React.Component {
                     <input type="text" id="manufacturer" placeholder="enter manufacturer" onChange={this.getManufacturer}></input><span style={{ color: "red" }}>{this.state.manfError}</span>
                     <br></br>
                     <p>Price</p>
-                    <input type="number" id="price" placeholder="enter Price" onChange={this.getPrice}></input><span style={{ color: "red" }}>{this.state.priceError}</span>
+                    <input type="number" id="price" placeholder="enter Price" style={{color:"black"}} onChange={this.getPrice}></input><span style={{ color: "red" }}>{this.state.priceError}</span>
                     <br></br>
                     <p>Quantity</p>
-                    <input type="number" id="quantity" placeholder="enter quantity" onChange={this.getQuantity}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
+                    <input type="number" id="quantity" placeholder="enter quantity" style={{color:"black"}} onChange={this.getQuantity}></input><span style={{ color: "red" }}>{this.state.quantityError}</span>
                     <br></br>
                     <p>Color</p>
                     <input type="text" id="color" placeholder="enter productColor" onChange={this.getColor}></input><span style={{ color: "red" }}>{this.state.codeError}</span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import './notification.css'
 class Notification extends React.Component {
     constructor(props) {
@@ -20,7 +21,10 @@ class Notification extends React.Component {
             <nav>
         <ul>
             <li style={{color: "whitesmoke"}}><h2>Product Inventory</h2></li>
-            <li style={{color: "whitesmoke"}}><center><h2 >Products:{this.props.products.length}</h2></center></li>
+            <li style={{color: "whitesmoke"}}><h2 >Products:{this.props.products.length}</h2></li>
+           <li> <Link to="/" id="logout">
+                <h2>Logout</h2>
+            </Link></li>
             {/* <li><h2>Logout</h2></li> */}
         </ul>
     </nav>

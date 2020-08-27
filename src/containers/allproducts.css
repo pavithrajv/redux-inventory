@@ -6,7 +6,8 @@
     margin-top: 3%;
     border: transparent;
     width: 80%;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    flex-wrap: wrap;
   }
   #customers td
     {
@@ -61,7 +62,7 @@
       
       display: inline-flex;
       flex-flow: wrap;
-      width: 300px;
+      width: 180px;
       height: 30px;
       border-radius: 15px;
       border: 1px solid grey;
