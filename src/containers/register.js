@@ -94,7 +94,7 @@ class RegisterComponent extends React.Component {
         // else {
         //     this.setState({ cpwdError: '', buttonStatus: false })
         // }
-        if(this.state.mobile.length != 10){
+        if(this.state.mobile.length < 9){
             this.setState({mobileError:"please enter valid mobile number",buttonStatus:true})
         }
         else{

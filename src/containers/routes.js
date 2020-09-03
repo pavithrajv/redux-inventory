@@ -7,6 +7,7 @@ import EditProduct from '../containers/editproduct'
 import LoginComponent from './login';
 import RegisterComponent from './register';
 
+
 class Routes extends React.Component {
     state = {  }
     render() { 
@@ -19,7 +20,7 @@ class Routes extends React.Component {
                 <Route path='/products' component={AllProducts}></Route>
                 <Route path='/addproduct' component={AddProduct}></Route>
                 <Route path='/editproduct' component={EditProduct}></Route>
-                <Route  path='/register' component={RegisterComponent}></Route>                    
+                <Route  path='/register' component={RegisterComponent}></Route>                 
                
             </Switch> 
             </div>

@@ -1,5 +1,3 @@
-
-
 const allProductsReducer = function listAllProducts(state = null, action) {
   var allproducts = [
     {
@@ -184,3 +182,6 @@ const allProductsReducer = function listAllProducts(state = null, action) {
 }
 
 export default allProductsReducer;
+
+
+

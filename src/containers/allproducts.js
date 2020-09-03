@@ -11,9 +11,11 @@ import Notification from '../containers/notification'
 import './allproducts.css'
 import searchProductBroadcast from '../actions/searchProductBroadcast';
 import searchCategoryBroadcast from '../actions/searchCategoryBroadcast';
+import axios from 'axios'
 
 class AllProducts extends React.Component {
 
+    
 
     displayPropsReceivedFromStore = () => {
         console.log("Received props from store -> products");
@@ -63,6 +65,21 @@ class AllProducts extends React.Component {
         console.log(newp)
     }
 
+     quantitySort = ()=>
+        {
+            let qty
+            qty = this.props.products.sort((a,b) =>{ return a.quantity - b.quantity} )
+            this.setState({products:qty})
+            console.log(qty)
+        }
+
+        priceSort=()=>{
+            let price
+            price = this.props.products.sort((a,b) =>{ return a.price - b.price} )
+            this.setState({products:price})
+            console.log(price)
+        }
+
 
     render() {
         return (
@@ -85,8 +102,8 @@ class AllProducts extends React.Component {
                                 <th>Vendor</th>
                                 <th>category</th>
                                 <th>Manufacturer</th>
-                                <th>price</th>
-                                <th>quantity</th>
+                                <th onClick={this.priceSort}>price</th>
+                                <th onClick={this.quantitySort}>quantity</th>
                                 <th>color</th>
                                 {/* <th>instock</th> */}
                                 <th colSpan="2">actions</th>
@@ -124,6 +141,7 @@ function recieveDeleteAndDispatch(dispatch) {
         editNewProduct: editProductBroadcast,
         setSearch: searchProductBroadcast,
         setSearchCategory:searchCategoryBroadcast
+        
     }, dispatch);
 }
 
