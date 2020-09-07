@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './login.css'
-import Header from './header';
+import Header from '../header/header';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import checkLoginBroadcast from '../actions/checkLoginBroadcast';
+import checkLoginBroadcast from '../../actions/checkLoginBroadcast';
 let usersresp='';
 class LoginComponent extends React.Component {
     state = {

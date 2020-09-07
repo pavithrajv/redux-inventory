@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import editProductBroadcast from '../actions/editProductBroadcast';
-import Notification from '../containers/notification'
+import editProductBroadcast from '../../actions/editProductBroadcast';
+import Notification from '../notification/notification'
+import Navbar from '../navbar/navbar'
 import './editproduct.css'
+
 class EditProduct extends React.Component {
 
     constructor(props) {
@@ -115,7 +117,8 @@ class EditProduct extends React.Component {
         }
         return (
             <div>
-                <Notification></Notification>
+                {/* <Notification></Notification> */}
+                <Navbar></Navbar>
 
             <div id="editbox">
                 <h2>Details of {this.state.name}</h2>

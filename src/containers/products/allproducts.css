@@ -62,12 +62,12 @@
       
       display: inline-flex;
       flex-flow: wrap;
-      width: 180px;
+      width: 200px;
       height: 30px;
       border-radius: 15px;
       border: 1px solid grey;
       text-align: center;
       font-size: 18px;
       margin-top: 20px;
-      
+      margin-left: 10%;
     }

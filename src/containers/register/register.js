@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import './register.css'
-import Header from './header';
+import Header from '../header/header';
 
 class RegisterComponent extends React.Component {
 

@@ -28,6 +28,7 @@ class Notification extends React.Component {
             {/* <li><h2>Logout</h2></li> */}
         </ul>
     </nav>
+    
          );
     }
 }

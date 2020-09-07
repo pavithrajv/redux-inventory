@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import deleteProductBroadcast from '../actions/deleteProductBroadcast';
-import editProductBroadcast from '../actions/editProductBroadcast';
+import deleteProductBroadcast from '../../actions/deleteProductBroadcast';
+import editProductBroadcast from '../../actions/editProductBroadcast';
 import { Redirect, Link } from "react-router-dom";
-import EditProduct from '../containers/editproduct';
-import AddProduct from '../containers/addproduct';
+// import EditProduct from '../containers/editproduct';
+// import AddProduct from '../containers/addproduct';
 
-import Notification from '../containers/notification'
+import Notification from '../notification/notification'
 import './allproducts.css'
-import searchProductBroadcast from '../actions/searchProductBroadcast';
-import searchCategoryBroadcast from '../actions/searchCategoryBroadcast';
+import searchProductBroadcast from '../../actions/searchProductBroadcast';
+import searchCategoryBroadcast from '../../actions/searchCategoryBroadcast';
 import axios from 'axios'
+import Navbar from '../navbar/navbar';
 
 class AllProducts extends React.Component {
 
@@ -85,12 +86,13 @@ class AllProducts extends React.Component {
         return (
 
             <div>
-                <Notification></Notification>
+                {/* <Notification></Notification> */}
+                <Navbar></Navbar>
 
                 <br></br>
 
                 <input type="search" name="search" id="search" onChange={(e) => this.props.setSearch(e.target.value)} placeholder="Search for a product"></input>
-                <input type="search" name="search" id="search" onChange={(e) => this.props.setSearchCategory(e.target.value)} placeholder="Search by category"></input>
+                {/* <input type="search" name="search" id="search" onChange={(e) => this.props.setSearchCategory(e.target.value)} placeholder="Search by category"></input> */}
                 <Link to="/addproduct"><button id="addpro">AddProduct</button></Link>
                 <div style={{ overflowX: "auto" }}>
                     <table border="none" id="customers">
@@ -128,10 +130,7 @@ function convertStoreToProps(store) {
     //it will consume extracted data as props!!!!
 
     return {
-
         products: store.allproducts
-
-
     }
 }
 

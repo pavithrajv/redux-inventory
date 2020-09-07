@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import broadcastAddProduct from '../actions/addProductBroadcast';
+import broadcastAddProduct from '../../actions/addProductBroadcast';
 import './addproduct.css'
-import Notification from '../containers/notification'
+import Notification from '../notification/notification'
+import Navbar from '../navbar/navbar'
+
 class AddProduct extends React.Component {
     constructor(props) {
         super(props);
@@ -94,7 +96,8 @@ class AddProduct extends React.Component {
     render() {
         return (
             <div>
-                <Notification></Notification>
+                {/* <Notification></Notification> */}
+                <Navbar></Navbar>
             
             <div id="addbox">
 
